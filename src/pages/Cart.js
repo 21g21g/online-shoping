@@ -1,15 +1,21 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { shopSliceActions } from "../store/ShopReducer";
-
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const count = useSelector((state) => state.shop.count);
-  const handleDecrease = ({ id }) => {
+  const handleDecrease = (id) => {
     dispatch(shopSliceActions.handleDecre(id));
   };
   const handleIncrease = (id) => {
     dispatch(shopSliceActions.handleIncrease(id));
+  };
+
+  const clearCart = () => {
+    dispatch(shopSliceActions.clearCart());
+    navigate("/home");
   };
   const cart = useSelector((state) => state.shop.cart);
   console.log(cart);
@@ -34,6 +40,12 @@ const Cart = () => {
           </div>
         </div>
       ))}
+      <div className="container d-flex justify-content-center align-item-center m-3">
+        {" "}
+        <button className="btn btn-secondary" onClick={clearCart}>
+          clear cart
+        </button>
+      </div>
     </div>
   );
 };

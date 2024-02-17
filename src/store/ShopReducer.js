@@ -26,21 +26,25 @@ const shopSlice = createSlice({
     },
     handleDecre(state, action) {
       const id = action.payload;
-      const index = state.cart.findIndex((cart) => cart.id === id);
-      if (index !== -1) {
-        if (state.cart[index].count === 1) {
-          state.cart.splice(index, 1);
+      const indexGet = state.cart.findIndex((cart) => cart.id === id);
+      if (indexGet !== -1) {
+        if (state.cart[indexGet].count === 1) {
+          state.cart.splice(indexGet, 1);
         } else {
-          state.cart[index].count--;
+          state.cart[indexGet].count--;
         }
       }
     },
+
     handleIncrease(state, action) {
       const id = action.payload;
       const exist = state.cart.find((cart) => cart.id == id);
       if (exist) {
         exist.count++;
       }
+    },
+    clearCart(state, action) {
+      state.cart = [];
     },
   },
 });

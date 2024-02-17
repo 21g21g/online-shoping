@@ -17,7 +17,7 @@ const Home = () => {
         imag: imag,
       })
     );
-    toast.success("you add a product", { position: "bottom-left" });
+    toast.success(`you add a ${name} product`, { position: "bottom-left" });
   };
   return (
     <div className="container d-flex flex-column justify-content-center align-item-center">
